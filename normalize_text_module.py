@@ -18,6 +18,7 @@ def normalize_text(
     lowercase=False,
     remove_stopwords=False,
     remove_punctuation=False,
+    binary=False
 ):
     # Tokenize the content
     tokens = nltk.word_tokenize(content)
@@ -60,8 +61,16 @@ def normalize_text(
         extended_punctuation = string.punctuation + ",.;“’--”!*:?....‘"
         tokens = [token for token in tokens if token not in extended_punctuation]
 
-    # Update word counts
-    for token in tokens:
-        word_counts[token] += 1
-
-    return tokens
+    # If binary is True, update the counts only once per unique token
+    if binary:
+        unique_tokens = set(tokens)
+        for token in unique_tokens:
+            word_counts[token] += 1
+        
+        # Return unique tokens as a list
+        return list(unique_tokens)
+    else:
+        # Update word counts normally (each occurrence)
+        for token in tokens:
+            word_counts[token] += 1
+        return tokens

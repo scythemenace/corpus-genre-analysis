@@ -110,7 +110,7 @@ for topic in topics:
     print(topic)
 
 vis = pyLDAvis.gensim.prepare(lda_model, corpus, dictionary, mds="mmds", R=30)
-pyLDAvis.save_html(vis,"lda_vis.html")
+pyLDAvis.save_html(vis,"lda_vis_bow.html")
 
 def topic_distribution(lda_model, romance_docs, crime_docs, dictionary):
 
