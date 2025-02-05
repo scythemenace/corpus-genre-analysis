@@ -57,9 +57,11 @@ def normalize_text(
         tokens = [token for token in tokens if token.lower() not in stopwords]
 
     if remove_punctuation:
-        extended_punctuation = string.punctuation + ",.;“’--”!*:?...."
+        extended_punctuation = string.punctuation + ",.;“’--”!*:?....‘"
         tokens = [token for token in tokens if token not in extended_punctuation]
 
     # Update word counts
     for token in tokens:
         word_counts[token] += 1
+
+    return tokens
