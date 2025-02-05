@@ -12,26 +12,13 @@ nltk.download("averaged_perceptron_tagger")
 
 def normalize_text(
     content,
+    word_counts,
     stem=False,
     lemmatize=False,
     lowercase=False,
     remove_stopwords=False,
     remove_punctuation=False,
 ):
-    """
-    Normalize text by applying various preprocessing steps.
-
-    Args:
-        content (str): The text content to preprocess.
-        stem (bool): Whether to apply stemming.
-        lemmatize (bool): Whether to apply lemmatization.
-        lowercase (bool): Whether to convert text to lowercase.
-        remove_stopwords (bool): Whether to remove stopwords.
-        remove_punctuation (bool): Whether to remove punctuation.
-
-    Returns:
-        list: A list of preprocessed tokens.
-    """
     # Tokenize the content
     tokens = nltk.word_tokenize(content)
 
@@ -73,4 +60,6 @@ def normalize_text(
         extended_punctuation = string.punctuation + ",.;“’--”!*:?...."
         tokens = [token for token in tokens if token not in extended_punctuation]
 
-    return tokens
+    # Update word counts
+    for token in tokens:
+        word_counts[token] += 1
