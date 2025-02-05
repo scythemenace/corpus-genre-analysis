@@ -13,13 +13,13 @@ romance_docs = []
 crime_docs = []
 
 def open_txt_files_in_directory(directory, array):
-    # Construct the search pattern to match all .txt files in the directory
+
+    # A search pattern to match all .txt files in the directory
     search_pattern = os.path.join(directory, '*.txt')
     
-    # Use glob to find all .txt files in the directory
+    # glob finds all .txt files in the directory
     txt_files = glob.glob(search_pattern)
     
-    # Loop through each .txt file and open it
     for txt_file in txt_files:
         try:
             with open(txt_file, 'r', encoding='utf-8') as file:
@@ -49,7 +49,7 @@ crime_bog = defaultdict(int)
 def count_words(documents, bog, **kwargs):
     tokenized_docs = []
     for doc in documents:
-        tokens = normalize_text_module.normalize_text(doc, bog, **kwargs)  # Applying preprocessing, kwargs just avoids me to write default values for each option here
+        tokens = normalize_text_module.normalize_text(doc, bog, **kwargs)  # kwargs just helps me to avoid writing default values for each option here
         tokenized_docs.append(tokens)
     return tokenized_docs
 
@@ -77,7 +77,7 @@ categories = {"romance": romance_bog, "crime": crime_bog}
 # Here we just unpack the values and store the total_words for each category
 total_words = {c: sum(bog.values()) for c, bog in categories.items()}
 
-# Step 4: Probability calculation (with Laplace smoothing), .get(word, 0) gives a default value for keys that don't exist
+
 def calculate_probability(word, word_counts, total_words, vocab_size, alpha=1):
     return (word_counts.get(word, 0) + alpha) / (total_words + alpha * vocab_size)
 
