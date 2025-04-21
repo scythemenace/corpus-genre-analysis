@@ -8,7 +8,7 @@ The dataset is composed of chapters extracted from romance and murder mystery no
 
 ### Project Objectives
 
-The main goals of this assignment were to:
+The main goals of this project were to:
 
 - Convert raw text data into BoW representations (both standard and binary).
 - Calculate log-likelihood ratios (LLR) using a Naïve Bayes-style estimation.
